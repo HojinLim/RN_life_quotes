@@ -1,0 +1,1 @@
+# RN_life_quotes
