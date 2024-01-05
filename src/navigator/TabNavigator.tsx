@@ -17,7 +17,7 @@ const TabNavigator = (props: Props) => {
       <Tab.Screen
         name="Setting"
         component={SettingScreen}
-        options={{tabBarIcon: 'account'}}
+        options={{tabBarIcon: 'cog'}}
       />
     </Tab.Navigator>
   );
