@@ -3,14 +3,14 @@ import React from 'react';
 
 type Props = {};
 
-const App = (props: Props) => {
+const SettingScreen = (props: Props) => {
   return (
     <View>
-      <Text>App</Text>
+      <Text>SettingScreen</Text>
     </View>
   );
 };
 
-export default App;
+export default SettingScreen;
 
 const styles = StyleSheet.create({});
