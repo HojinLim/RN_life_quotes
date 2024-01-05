@@ -1,13 +1,15 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
+import TabNavigator from './src/navigator/TabNavigator';
+import {NavigationContainer} from '@react-navigation/native';
 
 type Props = {};
 
 const App = (props: Props) => {
   return (
-    <View>
-      <Text>App</Text>
-    </View>
+    <NavigationContainer>
+      <TabNavigator />
+    </NavigationContainer>
   );
 };
 
