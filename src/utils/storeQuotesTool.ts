@@ -16,7 +16,7 @@ const setQuotesLists = async () => {
 const getQuotesLists = async () => {
   try {
     const result = await AsyncStorage.getItem(QUOTES_LISTS);
-    console.log('Stored data:', result); // Log the stored data
+    // console.log('Stored data:', result); // Log the stored data
 
     if (!result) {
       return undefined;
