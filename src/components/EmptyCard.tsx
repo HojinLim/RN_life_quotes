@@ -8,7 +8,6 @@ const EmptyCard = (props: Props) => {
   return (
     <View style={styles.container}>
       <Icon style={styles.icon} name="face-dizzy" size={120} />
-
       <Text style={styles.text}>Oops! There are no cards</Text>
       <Button style={styles.refresh} onPress={() => {}}>
         refresh

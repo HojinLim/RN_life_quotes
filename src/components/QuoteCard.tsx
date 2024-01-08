@@ -3,18 +3,20 @@ import React, {useState} from 'react';
 import {Quote} from 'quotesy';
 import {Card, IconButton, Paragraph, Surface, Title} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import {useDispatch} from 'react-redux';
 // import Icon from 'react-native-vector-icons/MaterialIcons';
 
 type QuoteCardProps = {
   cardIndex: number;
   quote: Quote;
-  onPressStar: (text: string) => void;
-  mode: string;
+  onPressStar: (text: Quote) => void;
+  mode?: string;
 };
 
 const QuoteCard = (props: QuoteCardProps) => {
   const [isPressEnabled, setPressEnabled] = useState(true);
   const {quote} = props;
+  const dispatch = useDispatch();
 
   // Check if quote is undefined or null
   if (!quote) {
@@ -25,7 +27,7 @@ const QuoteCard = (props: QuoteCardProps) => {
   const num = props.cardIndex;
   const mode = props.mode;
   console.log(text);
-  const handlePress = (value: string) => {
+  const handlePress = (value: Quote) => {
     if (isPressEnabled) {
       // Disable further presses
       setPressEnabled(false);
@@ -67,7 +69,7 @@ const QuoteCard = (props: QuoteCardProps) => {
         icon={favorite ? 'star' : 'star-outline'}
         iconColor="gold"
         size={28}
-        onPress={() => handlePress(text)}
+        onPress={() => handlePress(quote)}
         style={styles.iconButton}
       />
     </Card>

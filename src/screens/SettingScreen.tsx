@@ -1,12 +1,35 @@
 import {StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import {RootState} from '../redux/store';
+
+import {Button} from 'react-native-paper';
+
+import {
+  addQuote,
+  removeQuote,
+  resetFavorite,
+} from '../redux/slices/favoriteQuoteSlice';
+import {resetQuotes} from '../redux/slices/allQuoteSlice';
 
 type Props = {};
 
 const SettingScreen = (props: Props) => {
+  // const quotes = useSelector(
+  //   (state: RootState) => state.allQuotesReducer,
+  // );
+  const value2 = useSelector((state: RootState) => state.favoriteReducer);
+  console.log(value2);
+  const dispatch = useDispatch();
+
   return (
     <View>
-      <Text>SettingScreen</Text>
+      <Button
+        onPress={() => {
+          dispatch(resetFavorite());
+        }}>
+        Reset
+      </Button>
     </View>
   );
 };
