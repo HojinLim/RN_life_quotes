@@ -12,9 +12,9 @@ const favoriteQuotesSlice = createSlice({
     addQuote: (state, action: PayloadAction<Quote>) => {
       return [...state, {...action.payload, favorite: true}];
     },
-    shuffleQuotes: state => {
+    shuffleFavoriteQuotes: state => {
       const shuffledQuotes = shuffleArray(state);
-      return shuffledQuotes;
+      return shuffledQuotes; // Use 'all_quotes' for consistency
     },
     removeQuote: (state, action: PayloadAction<Quote>) => {
       const targetText = action.payload.text;
@@ -24,6 +24,6 @@ const favoriteQuotesSlice = createSlice({
   },
 });
 
-export const {addQuote, removeQuote, resetFavorite} =
+export const {addQuote, removeQuote, resetFavorite, shuffleFavoriteQuotes} =
   favoriteQuotesSlice.actions;
 export const favoriteReducer = favoriteQuotesSlice.reducer;

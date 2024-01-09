@@ -15,6 +15,7 @@ import AllCardDeck from '../components/AllCardDeck';
 import ShuffleButton from '../components/ShuffleButton';
 import {toggleMode} from '../redux/slices/settingSlice';
 import {Mode} from '../types/settingType';
+import {isPortraitNow} from '../utils/isPortraitNow';
 
 type Props = {};
 
@@ -71,7 +72,6 @@ const HomeScreen = (props: Props) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <ShuffleButton />
       {setting.mode === 'all' ? <AllCardDeck /> : <FavoriteCardDeck />}
 
       <ModeSegment onValueChange={handleSegmentChange} />

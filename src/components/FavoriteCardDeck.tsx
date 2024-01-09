@@ -8,8 +8,7 @@ import QuoteCard from './QuoteCard';
 import EmptyCard from './EmptyCard';
 import {removeQuote} from '../redux/slices/favoriteQuoteSlice';
 import {removeStar} from '../redux/slices/allQuoteSlice';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import {Button} from 'react-native-paper';
+import ShuffleButton from './ShuffleButton';
 
 type Props = {};
 
@@ -19,19 +18,10 @@ const FavoriteCardDeck = (props: Props) => {
   );
   const swiperRef = useRef<Swiper<Quote>>(null);
   const [currentCardIndex, setCurrentCardIndex] = useState(0); // Track the current card index
-
-  useEffect(() => {
-    // Load the last saved index from AsyncStorage
-    AsyncStorage.getItem('lastCardIndex').then(value => {
-      if (value !== null) {
-        setCurrentCardIndex(parseInt(value, 10));
-        console.log(value);
-      }
-    });
-  }, []);
+  const swiperState = (swiperRef.current?.state as any) || {};
 
   const dispatch = useDispatch();
-
+  console.log('현재 위치:', swiperState?.firstCardIndex);
   const onPressStar = (quote: Quote) => {
     dispatch(removeQuote(quote));
     dispatch(removeStar(quote));
@@ -42,7 +32,6 @@ const FavoriteCardDeck = (props: Props) => {
     if (curCardIndex !== 0 && curCardIndex === favoriteQuotes.length - 1) {
       swiperRef.current?.jumpToCardIndex(curCardIndex - 1);
     }
-    // swiperRef.current?.jumpToCardIndex()
   };
 
   console.log(favoriteQuotes);
@@ -54,7 +43,8 @@ const FavoriteCardDeck = (props: Props) => {
           infinite
           goBackToPreviousCardOnSwipeLeft
           cards={favoriteQuotes}
-          stackSize={favoriteQuotes.length}
+          // 최대 스택 크기 5
+          stackSize={favoriteQuotes.length > 5 ? 5 : favoriteQuotes.length}
           ref={swiperRef}
           cardIndex={currentCardIndex}
           renderCard={(card: Quote, cardIndex: number) => (
@@ -68,6 +58,7 @@ const FavoriteCardDeck = (props: Props) => {
       ) : (
         <EmptyCard />
       )}
+      <ShuffleButton />
     </SafeAreaView>
   );
 };

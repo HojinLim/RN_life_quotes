@@ -8,7 +8,7 @@ const ModeSegment = ({
   onValueChange: (value: string) => void;
 }) => {
   const [value, setValue] = React.useState('all');
-  //   console.log(value);
+
   const handleValueChange = (newValue: string) => {
     setValue(newValue);
     // 부모 컴포넌트로 값 전달

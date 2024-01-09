@@ -1,17 +1,22 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {IconButton, Tooltip} from 'react-native-paper';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 
-import {shuffleQuotes} from '../redux/slices/allQuoteSlice';
+import {RootState} from '../redux/store';
+import {shuffleAllQuotes} from '../redux/slices/allQuoteSlice';
+import {shuffleFavoriteQuotes} from '../redux/slices/favoriteQuoteSlice';
 
-type Props = {};
-
-const ShuffleButton = (props: Props) => {
+const ShuffleButton = () => {
   const dispatch = useDispatch();
+  const {mode} = useSelector((state: RootState) => state.settingSliceReducer);
 
   const shuffleHandler = () => {
-    dispatch(shuffleQuotes());
+    if (mode === 'all') {
+      dispatch(shuffleAllQuotes());
+    } else if (mode === 'favorite') {
+      dispatch(shuffleFavoriteQuotes());
+    }
   };
 
   return (

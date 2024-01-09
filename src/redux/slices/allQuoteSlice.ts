@@ -8,7 +8,7 @@ const allQuotesSlice = createSlice({
   name: 'all_quotes',
   initialState,
   reducers: {
-    shuffleQuotes: state => {
+    shuffleAllQuotes: state => {
       const shuffledQuotes = shuffleArray(state);
       return shuffledQuotes; // Use 'all_quotes' for consistency
     },
@@ -35,7 +35,7 @@ const allQuotesSlice = createSlice({
 });
 
 export const {
-  shuffleQuotes,
+  shuffleAllQuotes,
   resetQuotes,
   changeLike,
   removeStar,

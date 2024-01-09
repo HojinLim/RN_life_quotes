@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
     borderColor: 'black',
     borderWidth: 1,
     marginTop: 70,
-    paddingVertical: 30,
+    paddingVertical: 35,
   },
   title: {
     fontWeight: '800',

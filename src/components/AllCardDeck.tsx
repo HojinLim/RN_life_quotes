@@ -19,13 +19,11 @@ const AllCardDeck = (props: Props) => {
   const dispatch = useDispatch();
   const onPressStar = (quote: Quote) => {
     const {favorite} = quote;
-    console.log(favorite);
+
     if (favorite === false) {
-      // console.log('위에작동');
       dispatch(changeLike(quote.text));
       dispatch(addQuote(quote));
     } else if (favorite === true) {
-      // console.log('밑에작동');
       dispatch(removeQuote(quote));
       dispatch(removeStar(quote));
     }
@@ -55,6 +53,7 @@ const AllCardDeck = (props: Props) => {
       ) : (
         <EmptyCard />
       )}
+      <ShuffleButton />
     </SafeAreaView>
   );
 };
