@@ -19,11 +19,26 @@ const allQuotesSlice = createSlice({
           : quote,
       );
     },
+    removeStar: (state, action: PayloadAction<Quote>) => {
+      const {text} = action.payload;
+      return state.map(quote =>
+        quote.text === text ? {...quote, favorite: false} : quote,
+      );
+    },
+    removeAllStar: state => {
+      return state.map(quote => ({...quote, favorite: false}));
+    },
     resetQuotes: state => {
       return parse_json();
     },
   },
 });
 
-export const {shuffleQuotes, resetQuotes, changeLike} = allQuotesSlice.actions;
+export const {
+  shuffleQuotes,
+  resetQuotes,
+  changeLike,
+  removeStar,
+  removeAllStar,
+} = allQuotesSlice.actions;
 export const allQuotesReducer = allQuotesSlice.reducer;

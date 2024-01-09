@@ -1,5 +1,5 @@
 import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {Quote} from 'quotesy';
 
 import {FAVORITE_QUOTES, QUOTES_LISTS} from '../constants/variable';
@@ -9,10 +9,12 @@ import {getQuotesLists} from '../utils/storeQuotesTool';
 import ModeSegment from '../components/ModeSegment';
 
 import FavoriteCardDeck from '../components/FavoriteCardDeck';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../redux/store';
 import AllCardDeck from '../components/AllCardDeck';
 import ShuffleButton from '../components/ShuffleButton';
+import {toggleMode} from '../redux/slices/settingSlice';
+import {Mode} from '../types/settingType';
 
 type Props = {};
 
@@ -20,8 +22,10 @@ const HomeScreen = (props: Props) => {
   const [quotes, setQuotes] = useState<Quote[] | null>(null);
   const [all, setAll] = useState<Quote[]>([]);
   const [favorites, setFavorites] = useState<Quote[]>([]);
-  const [mode, setMode] = useState<string>('all');
+  // const [mode, setMode] = useState<string>('all');
   const value = useSelector((state: RootState) => state.settingSliceReducer);
+  const setting = useSelector((state: RootState) => state.settingSliceReducer);
+  const dispatch = useDispatch();
 
   const fetchQuotes = async () => {
     try {
@@ -41,28 +45,34 @@ const HomeScreen = (props: Props) => {
       console.error('Error fetching favorites:', error);
     }
   };
+  const init = useCallback(() => {
+    dispatch(toggleMode('all'));
+  }, [dispatch]);
 
   useEffect(() => {
+    init();
     fetchQuotes();
     fetchFavorites();
-  }, []);
+  }, [init]);
 
   useEffect(() => {
-    console.log('Updated Redux State:', value);
+    // console.log('Updated Redux State:', value);
   }, [value]);
 
   useEffect(() => {
-    setQuotes(mode === 'all' ? all : favorites);
-  }, [mode, all, favorites]);
+    setQuotes(setting.mode === 'all' ? all : favorites);
+  }, [setting.mode, all, favorites]);
 
   const handleSegmentChange = (newValue: string) => {
-    setMode(newValue);
+    // setMode(newValue);
+    const mode_ = newValue as Mode;
+    dispatch(toggleMode(mode_));
   };
 
   return (
     <SafeAreaView style={styles.container}>
       <ShuffleButton />
-      {mode === 'all' ? <AllCardDeck /> : <FavoriteCardDeck />}
+      {setting.mode === 'all' ? <AllCardDeck /> : <FavoriteCardDeck />}
 
       <ModeSegment onValueChange={handleSegmentChange} />
     </SafeAreaView>

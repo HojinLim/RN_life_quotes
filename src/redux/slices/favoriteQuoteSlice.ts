@@ -1,6 +1,7 @@
 import {PayloadAction, createSlice} from '@reduxjs/toolkit';
 
 import {Quote} from 'quotesy';
+import {shuffleArray} from '../../utils/shuffleArrayUtil';
 
 const initialState: Quote[] = [];
 
@@ -11,9 +12,13 @@ const favoriteQuotesSlice = createSlice({
     addQuote: (state, action: PayloadAction<Quote>) => {
       return [...state, {...action.payload, favorite: true}];
     },
-    removeQuote: (state, action: PayloadAction<string>) => {
-      const textToRemove = action.payload;
-      return state.filter(quote => quote.text !== textToRemove);
+    shuffleQuotes: state => {
+      const shuffledQuotes = shuffleArray(state);
+      return shuffledQuotes;
+    },
+    removeQuote: (state, action: PayloadAction<Quote>) => {
+      const targetText = action.payload.text;
+      return state.filter(quote => quote.text !== targetText);
     },
     resetFavorite: state => [],
   },

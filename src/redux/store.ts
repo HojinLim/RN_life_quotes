@@ -31,8 +31,6 @@ export const store = configureStore({
     getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-        ignoredPaths: ['some.path.to.ignore'],
-        // increase the threshold
         warnAfter: 50, // or any other value
       },
     }),

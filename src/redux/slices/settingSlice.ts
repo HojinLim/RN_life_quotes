@@ -1,14 +1,17 @@
 import {PayloadAction, createSlice} from '@reduxjs/toolkit';
+import {QuoteSetting} from '../../types/settingType';
 
-const initialState: string = 'all';
+const initialState: QuoteSetting = {
+  mode: 'all',
+};
 
 const settingSlice = createSlice({
   name: 'setting',
   initialState,
   reducers: {
-    toggleMode: (state, action: PayloadAction<string>) => {
+    toggleMode: (state, action: PayloadAction<'all' | 'favorite'>) => {
       // Use the action payload to update the state
-      return action.payload;
+      return {...state, mode: action.payload};
     },
   },
 });

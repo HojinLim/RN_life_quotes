@@ -36,7 +36,6 @@ class MainApplication : Application(), ReactApplication {
     get() = getDefaultReactHost(this.applicationContext, reactNativeHost)
 
   override fun onCreate() {
-    SplashScreen.show(this);
     super.onCreate()
     SoLoader.init(this, false)
     if (BuildConfig.IS_NEW_ARCHITECTURE_ENABLED) {

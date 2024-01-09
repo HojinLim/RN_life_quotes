@@ -1,5 +1,5 @@
 import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
-import React, {useEffect} from 'react';
+import React, {useEffect, useRef} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import Swiper from 'react-native-deck-swiper';
 import {Quote} from 'quotesy';
@@ -8,24 +8,35 @@ import EmptyCard from './EmptyCard';
 
 import ShuffleButton from './ShuffleButton';
 import {RootState} from '../redux/store';
-import {changeLike} from '../redux/slices/allQuoteSlice';
-import {addQuote} from '../redux/slices/favoriteQuoteSlice';
+import {changeLike, removeStar} from '../redux/slices/allQuoteSlice';
+import {addQuote, removeQuote} from '../redux/slices/favoriteQuoteSlice';
 
 type Props = {};
 
 const AllCardDeck = (props: Props) => {
   const quotes = useSelector((state: RootState) => state.allQuotesReducer);
-
+  const swiperRef = useRef(null);
   const dispatch = useDispatch();
-  const onPressStar = (value: Quote) => {
-    dispatch(changeLike(value.text));
-    dispatch(addQuote(value));
+  const onPressStar = (quote: Quote) => {
+    const {favorite} = quote;
+    console.log(favorite);
+    if (favorite === false) {
+      // console.log('위에작동');
+      dispatch(changeLike(quote.text));
+      dispatch(addQuote(quote));
+    } else if (favorite === true) {
+      // console.log('밑에작동');
+      dispatch(removeQuote(quote));
+      dispatch(removeStar(quote));
+    }
   };
 
   return (
     <SafeAreaView style={styles.container}>
       {quotes ? (
         <Swiper
+          ref={swiperRef}
+          // stackSize={3}
           infinite
           goBackToPreviousCardOnSwipeLeft
           cards={quotes}

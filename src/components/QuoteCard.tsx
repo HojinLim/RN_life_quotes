@@ -3,8 +3,9 @@ import React, {useState} from 'react';
 import {Quote} from 'quotesy';
 import {Card, IconButton, Paragraph, Surface, Title} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import {useDispatch} from 'react-redux';
-// import Icon from 'react-native-vector-icons/MaterialIcons';
+// import Icon as Icon from 'react-native-vector-icons/AntDesign';
+import {useDispatch, useSelector} from 'react-redux';
+import {RootState} from '../redux/store';
 
 type QuoteCardProps = {
   cardIndex: number;
@@ -16,17 +17,17 @@ type QuoteCardProps = {
 const QuoteCard = (props: QuoteCardProps) => {
   const [isPressEnabled, setPressEnabled] = useState(true);
   const {quote} = props;
-  const dispatch = useDispatch();
-
+  // const dispatch = useDispatch();
+  const setting = useSelector((state: RootState) => state.settingSliceReducer);
   // Check if quote is undefined or null
   if (!quote) {
-    return null; // or handle the case when quote is not available
+    return null;
   }
 
   const {text, author, source, tags, favorite} = quote;
   const num = props.cardIndex;
   const mode = props.mode;
-  console.log(text);
+  console.log(num);
   const handlePress = (value: Quote) => {
     if (isPressEnabled) {
       // Disable further presses
@@ -46,8 +47,12 @@ const QuoteCard = (props: QuoteCardProps) => {
     <Card
       style={{
         ...styles.card,
-        backgroundColor: mode === 'favorite' ? 'pink' : 'white',
+        backgroundColor: setting.mode === 'favorite' ? 'beige' : 'white',
       }}>
+      {setting.mode === 'favorite' && (
+        <Icon style={styles.pin} name="thumb-tack" size={24} />
+      )}
+
       <Card.Content style={styles.cardContent}>
         <Title style={styles.title}>
           <Icon name="quote-left" size={24} />
@@ -85,6 +90,7 @@ const styles = StyleSheet.create({
     borderColor: 'black',
     borderWidth: 1,
     marginTop: 70,
+    paddingVertical: 30,
   },
   title: {
     fontWeight: '800',
@@ -126,5 +132,8 @@ const styles = StyleSheet.create({
     verticalAlign: 'bottom',
     marginTop: 'auto',
     marginEnd: 15,
+  },
+  pin: {
+    marginStart: 10,
   },
 });
