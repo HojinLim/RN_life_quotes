@@ -1,4 +1,10 @@
-import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
+import {
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  View,
+  useWindowDimensions,
+} from 'react-native';
 import React, {useCallback, useEffect, useState} from 'react';
 import {Quote} from 'quotesy';
 
@@ -12,7 +18,6 @@ import FavoriteCardDeck from '../components/FavoriteCardDeck';
 import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../redux/store';
 import AllCardDeck from '../components/AllCardDeck';
-import ShuffleButton from '../components/ShuffleButton';
 import {toggleMode} from '../redux/slices/settingSlice';
 import {Mode} from '../types/settingType';
 import {isPortraitNow} from '../utils/isPortraitNow';
@@ -23,10 +28,12 @@ const HomeScreen = (props: Props) => {
   const [quotes, setQuotes] = useState<Quote[] | null>(null);
   const [all, setAll] = useState<Quote[]>([]);
   const [favorites, setFavorites] = useState<Quote[]>([]);
-  // const [mode, setMode] = useState<string>('all');
   const value = useSelector((state: RootState) => state.settingSliceReducer);
   const setting = useSelector((state: RootState) => state.settingSliceReducer);
   const dispatch = useDispatch();
+  const [isPortrait, setIsPotrait] = useState<boolean>();
+
+  const {width, height} = useWindowDimensions();
 
   const fetchQuotes = async () => {
     try {
@@ -36,6 +43,9 @@ const HomeScreen = (props: Props) => {
       console.error('Error fetching quotes:', error);
     }
   };
+  useEffect(() => {
+    setIsPotrait(isPortraitNow(width, height));
+  }, [width, height]);
 
   const fetchFavorites = async () => {
     try {
@@ -56,16 +66,13 @@ const HomeScreen = (props: Props) => {
     fetchFavorites();
   }, [init]);
 
-  useEffect(() => {
-    // console.log('Updated Redux State:', value);
-  }, [value]);
+  useEffect(() => {}, [value]);
 
   useEffect(() => {
     setQuotes(setting.mode === 'all' ? all : favorites);
   }, [setting.mode, all, favorites]);
 
   const handleSegmentChange = (newValue: string) => {
-    // setMode(newValue);
     const mode_ = newValue as Mode;
     dispatch(toggleMode(mode_));
   };
@@ -73,7 +80,6 @@ const HomeScreen = (props: Props) => {
   return (
     <SafeAreaView style={styles.container}>
       {setting.mode === 'all' ? <AllCardDeck /> : <FavoriteCardDeck />}
-
       <ModeSegment onValueChange={handleSegmentChange} />
     </SafeAreaView>
   );
@@ -85,12 +91,5 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#F5FCFF',
-  },
-  shuffle: {
-    flex: 1,
-    position: 'absolute',
-    top: 550,
-    alignItems: 'center',
-    paddingTop: 5,
   },
 });

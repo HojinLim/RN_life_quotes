@@ -37,9 +37,10 @@ const AllCardDeck = (props: Props) => {
           // stackSize={3}
           infinite
           goBackToPreviousCardOnSwipeLeft
+          goBackToPreviousCardOnSwipeTop
           cards={quotes}
           renderCard={(card: Quote, cardIndex: number) => {
-            console.log('Card Index:', cardIndex);
+            // console.log('Card Index:', cardIndex);
 
             return (
               <QuoteCard

@@ -10,7 +10,7 @@ const allQuotesSlice = createSlice({
   reducers: {
     shuffleAllQuotes: state => {
       const shuffledQuotes = shuffleArray(state);
-      return shuffledQuotes; // Use 'all_quotes' for consistency
+      return shuffledQuotes;
     },
     changeLike: (state, action: PayloadAction<string>) => {
       return state.map(quote =>

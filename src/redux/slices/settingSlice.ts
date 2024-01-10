@@ -1,6 +1,5 @@
 import {PayloadAction, createSlice} from '@reduxjs/toolkit';
 import {QuoteSetting} from '../../types/settingType';
-
 const initialState: QuoteSetting = {
   mode: 'all',
 };

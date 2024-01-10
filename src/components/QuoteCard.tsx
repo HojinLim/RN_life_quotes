@@ -1,11 +1,12 @@
-import {StyleSheet, Text, View} from 'react-native';
-import React, {useState} from 'react';
+import {StyleSheet, useWindowDimensions} from 'react-native';
+import React, {useEffect, useState} from 'react';
 import {Quote} from 'quotesy';
 import {Card, IconButton, Paragraph, Surface, Title} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/FontAwesome';
-// import Icon as Icon from 'react-native-vector-icons/AntDesign';
-import {useDispatch, useSelector} from 'react-redux';
+
+import {useSelector} from 'react-redux';
 import {RootState} from '../redux/store';
+import {isPortraitNow} from '../utils/isPortraitNow';
 
 type QuoteCardProps = {
   cardIndex: number;
@@ -16,27 +17,28 @@ type QuoteCardProps = {
 
 const QuoteCard = (props: QuoteCardProps) => {
   const [isPressEnabled, setPressEnabled] = useState(true);
-  const {quote} = props;
-  // const dispatch = useDispatch();
+  const {quote, cardIndex} = props;
+  const {width, height} = useWindowDimensions();
+  const [isPortrait, setIsPotrait] = useState<boolean>();
   const setting = useSelector((state: RootState) => state.settingSliceReducer);
-  // Check if quote is undefined or null
+
+  useEffect(() => {
+    setIsPotrait(isPortraitNow(width, height));
+  }, [width, height]);
+
   if (!quote) {
     return null;
   }
 
   const {text, author, source, tags, favorite} = quote;
-  const num = props.cardIndex;
-  const mode = props.mode;
-  console.log(num);
+
   const handlePress = (value: Quote) => {
     if (isPressEnabled) {
-      // Disable further presses
       setPressEnabled(false);
 
-      // Your logic here
       props.onPressStar(value);
 
-      // Enable presses after a delay (e.g., 2000 milliseconds)
+      // 버튼 딜레이
       setTimeout(() => {
         setPressEnabled(true);
       }, 1000);
@@ -47,6 +49,8 @@ const QuoteCard = (props: QuoteCardProps) => {
     <Card
       style={{
         ...styles.card,
+        marginTop: isPortrait ? 70 : 30,
+        paddingVertical: isPortrait ? 35 : 0,
         backgroundColor: setting.mode === 'favorite' ? 'beige' : 'white',
       }}>
       {setting.mode === 'favorite' && (
@@ -54,12 +58,13 @@ const QuoteCard = (props: QuoteCardProps) => {
       )}
 
       <Card.Content style={styles.cardContent}>
-        <Title style={styles.title}>
+        <Title style={[styles.title, {fontSize: isPortrait ? 22 : 15}]}>
           <Icon name="quote-left" size={24} />
           {'  ' + text + '  '}
           <Icon style={styles.quote} name="quote-right" size={24} />
         </Title>
-        <Paragraph style={styles.author}>{num}</Paragraph>
+        {/* 현재 카드 인덱스 */}
+        {/* <Paragraph style={styles.author}>{num}</Paragraph> */}
         <Paragraph style={styles.author}>- {author}</Paragraph>
 
         {/* {source && <Paragraph>Source: {source}</Paragraph>} */}
@@ -75,7 +80,7 @@ const QuoteCard = (props: QuoteCardProps) => {
         iconColor="gold"
         size={28}
         onPress={() => handlePress(quote)}
-        style={styles.iconButton}
+        style={[styles.iconButton]}
       />
     </Card>
   );
@@ -86,15 +91,14 @@ export default QuoteCard;
 const styles = StyleSheet.create({
   card: {
     margin: 16,
-    height: '60%',
+    height: '65%',
     borderColor: 'black',
     borderWidth: 1,
-    marginTop: 70,
-    paddingVertical: 35,
+    // paddingVertical: 35,
   },
   title: {
     fontWeight: '800',
-    fontSize: 22,
+    // fontSize: 22,
     paddingVertical: 5,
     marginVertical: 25,
   },
@@ -131,6 +135,7 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-end',
     verticalAlign: 'bottom',
     marginTop: 'auto',
+
     marginEnd: 15,
   },
   pin: {

@@ -11,6 +11,7 @@ const ShuffleButton = () => {
   const dispatch = useDispatch();
   const {mode} = useSelector((state: RootState) => state.settingSliceReducer);
 
+  //  모드에 따라 각 위치의 카드를 섞기
   const shuffleHandler = () => {
     if (mode === 'all') {
       dispatch(shuffleAllQuotes());

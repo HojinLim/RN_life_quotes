@@ -1,5 +1,5 @@
 import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
-import React, {useEffect, useMemo, useRef, useState} from 'react';
+import React, {useRef, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../redux/store';
 import Swiper from 'react-native-deck-swiper';
@@ -10,18 +10,15 @@ import {removeQuote} from '../redux/slices/favoriteQuoteSlice';
 import {removeStar} from '../redux/slices/allQuoteSlice';
 import ShuffleButton from './ShuffleButton';
 
-type Props = {};
-
-const FavoriteCardDeck = (props: Props) => {
+const FavoriteCardDeck = () => {
   const favoriteQuotes = useSelector(
     (state: RootState) => state.favoriteReducer,
   );
+
   const swiperRef = useRef<Swiper<Quote>>(null);
-  const [currentCardIndex, setCurrentCardIndex] = useState(0); // Track the current card index
-  const swiperState = (swiperRef.current?.state as any) || {};
 
   const dispatch = useDispatch();
-  console.log('현재 위치:', swiperState?.firstCardIndex);
+
   const onPressStar = (quote: Quote) => {
     dispatch(removeQuote(quote));
     dispatch(removeStar(quote));
@@ -34,7 +31,6 @@ const FavoriteCardDeck = (props: Props) => {
     }
   };
 
-  console.log(favoriteQuotes);
   return (
     <SafeAreaView style={styles.container}>
       {favoriteQuotes.length > 0 ? (
@@ -42,18 +38,21 @@ const FavoriteCardDeck = (props: Props) => {
           stackAnimationFriction={5}
           infinite
           goBackToPreviousCardOnSwipeLeft
+          goBackToPreviousCardOnSwipeTop
           cards={favoriteQuotes}
           // 최대 스택 크기 5
           stackSize={favoriteQuotes.length > 5 ? 5 : favoriteQuotes.length}
           ref={swiperRef}
-          cardIndex={currentCardIndex}
-          renderCard={(card: Quote, cardIndex: number) => (
-            <QuoteCard
-              quote={card}
-              cardIndex={cardIndex}
-              onPressStar={onPressStar}
-            />
-          )}
+          cardIndex={0}
+          renderCard={(card: Quote, cardIndex: number) => {
+            return (
+              <QuoteCard
+                quote={card}
+                cardIndex={cardIndex}
+                onPressStar={onPressStar}
+              />
+            );
+          }}
         />
       ) : (
         <EmptyCard />
