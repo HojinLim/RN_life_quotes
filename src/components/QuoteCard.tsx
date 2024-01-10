@@ -1,5 +1,5 @@
 import {StyleSheet, useWindowDimensions} from 'react-native';
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import {Quote} from 'quotesy';
 import {Card, IconButton, Paragraph, Surface, Title} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -22,7 +22,8 @@ const QuoteCard = (props: QuoteCardProps) => {
   const [isPortrait, setIsPotrait] = useState<boolean>();
   const setting = useSelector((state: RootState) => state.settingSliceReducer);
 
-  useEffect(() => {
+  // 불필요한 계산을 줄이기 위해
+  useMemo(() => {
     setIsPotrait(isPortraitNow(width, height));
   }, [width, height]);
 

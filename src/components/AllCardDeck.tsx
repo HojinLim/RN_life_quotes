@@ -17,6 +17,7 @@ const AllCardDeck = (props: Props) => {
   const quotes = useSelector((state: RootState) => state.allQuotesReducer);
   const swiperRef = useRef(null);
   const dispatch = useDispatch();
+
   const onPressStar = (quote: Quote) => {
     const {favorite} = quote;
 
@@ -31,15 +32,16 @@ const AllCardDeck = (props: Props) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      {quotes ? (
+      {quotes.length > 0 ? (
         <Swiper
           ref={swiperRef}
-          // stackSize={3}
+          stackSize={2}
           infinite
           goBackToPreviousCardOnSwipeLeft
           goBackToPreviousCardOnSwipeTop
           animateCardOpacity
           cards={quotes}
+          cardIndex={0}
           renderCard={(card: Quote, cardIndex: number) => {
             // console.log('Card Index:', cardIndex);
 
