@@ -58,7 +58,7 @@ const QuoteCard = (props: QuoteCardProps) => {
       )}
 
       <Card.Content style={styles.cardContent}>
-        <Title style={[styles.title, {fontSize: isPortrait ? 22 : 15}]}>
+        <Title style={[styles.title, {fontSize: isPortrait ? 22 : 16}]}>
           <Icon name="quote-left" size={24} />
           {'  ' + text + '  '}
           <Icon style={styles.quote} name="quote-right" size={24} />
@@ -113,9 +113,7 @@ const styles = StyleSheet.create({
 
     // marginBottom: 50,
   },
-  tag: {
-    marginVertical: 15,
-  },
+  tag: {},
 
   quote: {
     marginStart: 25,

@@ -1,5 +1,5 @@
 import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
-import React, {useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../redux/store';
 import Swiper from 'react-native-deck-swiper';
@@ -16,6 +16,11 @@ const FavoriteCardDeck = () => {
   );
 
   const swiperRef = useRef<Swiper<Quote>>(null);
+  const [cardLength, setCardLength] = useState<number>(0);
+
+  useEffect(() => {
+    setCardLength(favoriteQuotes.length);
+  }, [favoriteQuotes.length]);
 
   const dispatch = useDispatch();
 
@@ -40,10 +45,16 @@ const FavoriteCardDeck = () => {
           goBackToPreviousCardOnSwipeLeft
           goBackToPreviousCardOnSwipeTop
           cards={favoriteQuotes}
+          animateCardOpacity
           // 최대 스택 크기 5
           stackSize={favoriteQuotes.length > 5 ? 5 : favoriteQuotes.length}
           ref={swiperRef}
           cardIndex={0}
+          // 카드가 한 개뿐이면 움직면 멈추기
+          disableRightSwipe={cardLength > 1 ? false : true}
+          disableLeftSwipe={cardLength > 1 ? false : true}
+          disableBottomSwipe={cardLength > 1 ? false : true}
+          disableTopSwipe={cardLength > 1 ? false : true}
           renderCard={(card: Quote, cardIndex: number) => {
             return (
               <QuoteCard
@@ -57,7 +68,8 @@ const FavoriteCardDeck = () => {
       ) : (
         <EmptyCard />
       )}
-      <ShuffleButton />
+
+      {cardLength > 0 && <ShuffleButton />}
     </SafeAreaView>
   );
 };

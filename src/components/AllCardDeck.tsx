@@ -38,6 +38,7 @@ const AllCardDeck = (props: Props) => {
           infinite
           goBackToPreviousCardOnSwipeLeft
           goBackToPreviousCardOnSwipeTop
+          animateCardOpacity
           cards={quotes}
           renderCard={(card: Quote, cardIndex: number) => {
             // console.log('Card Index:', cardIndex);
@@ -54,7 +55,7 @@ const AllCardDeck = (props: Props) => {
       ) : (
         <EmptyCard />
       )}
-      <ShuffleButton />
+      {quotes.length > 0 && <ShuffleButton />}
     </SafeAreaView>
   );
 };

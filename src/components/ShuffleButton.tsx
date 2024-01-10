@@ -1,15 +1,23 @@
-import {StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import {StyleSheet, Text, View, useWindowDimensions} from 'react-native';
+import React, {useEffect, useState} from 'react';
 import {IconButton, Tooltip} from 'react-native-paper';
 import {useDispatch, useSelector} from 'react-redux';
 
 import {RootState} from '../redux/store';
 import {shuffleAllQuotes} from '../redux/slices/allQuoteSlice';
 import {shuffleFavoriteQuotes} from '../redux/slices/favoriteQuoteSlice';
+import {isPortraitNow} from '../utils/isPortraitNow';
 
 const ShuffleButton = () => {
   const dispatch = useDispatch();
   const {mode} = useSelector((state: RootState) => state.settingSliceReducer);
+
+  const {width, height} = useWindowDimensions();
+  const [isPortrait, setIsPotrait] = useState<boolean>();
+
+  useEffect(() => {
+    setIsPotrait(isPortraitNow(width, height));
+  }, [width, height]);
 
   //  모드에 따라 각 위치의 카드를 섞기
   const shuffleHandler = () => {
@@ -26,7 +34,7 @@ const ShuffleButton = () => {
         icon={'shuffle-variant'}
         size={24}
         onPress={shuffleHandler}
-        style={styles.shuffle}
+        style={isPortrait ? styles.shuffle : styles.landscape_shuffle}
       />
     </Tooltip>
   );
@@ -38,12 +46,14 @@ const styles = StyleSheet.create({
   shuffle: {
     flex: 1,
     position: 'absolute',
-    // bottom: -250,
     top: 550,
-    // bottom: -150,
-    // right: 0,
-    // margin: 16,
     alignItems: 'center',
     paddingTop: 5,
+  },
+  landscape_shuffle: {
+    alignContent: 'center',
+    justifyContent: 'center',
+    marginStart: 50,
+    marginTop: 55,
   },
 });
