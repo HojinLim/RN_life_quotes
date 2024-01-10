@@ -1,4 +1,4 @@
-import {StyleSheet, useWindowDimensions} from 'react-native';
+import {StyleSheet, View, useWindowDimensions} from 'react-native';
 import React, {useEffect, useMemo, useState} from 'react';
 import {Quote} from 'quotesy';
 import {Card, IconButton, Paragraph, Surface, Title} from 'react-native-paper';
@@ -95,6 +95,7 @@ const styles = StyleSheet.create({
     height: '65%',
     borderColor: 'black',
     borderWidth: 1,
+
     // paddingVertical: 35,
   },
   title: {

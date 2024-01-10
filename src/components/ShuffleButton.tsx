@@ -29,14 +29,12 @@ const ShuffleButton = () => {
   };
 
   return (
-    <Tooltip title="카드들을 섞습니다.">
-      <IconButton
-        icon={'shuffle-variant'}
-        size={24}
-        onPress={shuffleHandler}
-        style={isPortrait ? styles.shuffle : styles.landscape_shuffle}
-      />
-    </Tooltip>
+    <IconButton
+      icon={'shuffle-variant'}
+      size={24}
+      onPress={shuffleHandler}
+      style={isPortrait ? styles.shuffle : styles.landscape_shuffle}
+    />
   );
 };
 
@@ -44,11 +42,14 @@ export default ShuffleButton;
 
 const styles = StyleSheet.create({
   shuffle: {
-    flex: 1,
-    position: 'absolute',
-    top: 550,
+    // flex: 1,
+    // position: 'absolute',
+    // alignContent: 'center',
+    // justifyContent: 'center',
+    marginTop: 650,
     alignItems: 'center',
     paddingTop: 5,
+    alignSelf: 'center',
   },
   landscape_shuffle: {
     alignContent: 'center',

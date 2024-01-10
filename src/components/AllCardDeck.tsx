@@ -1,4 +1,4 @@
-import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
+import {Alert, SafeAreaView, StyleSheet, Text, View} from 'react-native';
 import React, {useEffect, useRef} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import Swiper from 'react-native-deck-swiper';
@@ -21,7 +21,7 @@ const AllCardDeck = (props: Props) => {
   const onPressStar = (quote: Quote) => {
     const {favorite} = quote;
 
-    if (favorite === false) {
+    if (favorite === false || favorite === undefined) {
       dispatch(changeLike(quote.text));
       dispatch(addQuote(quote));
     } else if (favorite === true) {
@@ -57,7 +57,8 @@ const AllCardDeck = (props: Props) => {
       ) : (
         <EmptyCard />
       )}
-      {quotes.length > 0 && <ShuffleButton />}
+
+      <ShuffleButton />
     </SafeAreaView>
   );
 };

@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, StyleSheet, Alert} from 'react-native';
-import {Button} from 'react-native-paper';
+import {Button, Text} from 'react-native-paper';
 import {useDispatch} from 'react-redux';
 
 import {resetFavorite} from '../redux/slices/favoriteQuoteSlice';
