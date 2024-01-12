@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {SafeAreaView, StyleSheet} from 'react-native';
-import {SegmentedButtons, Text} from 'react-native-paper';
+import {SegmentedButtons} from 'react-native-paper';
 
 const ModeSegment = ({
   onValueChange,

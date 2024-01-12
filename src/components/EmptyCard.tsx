@@ -1,11 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {
-  Dimensions,
-  StyleSheet,
-  Text,
-  View,
-  useWindowDimensions,
-} from 'react-native';
+import {StyleSheet, Text, View, useWindowDimensions} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome6';
 import {isPortraitNow} from '../utils/isPortraitNow';
 
@@ -27,9 +21,6 @@ const EmptyCard = (props: Props) => {
         size={isPortrait ? 120 : 60}
       />
       <Text style={styles.text}>Oops! There are no cards</Text>
-      {/* <Button style={styles.refresh} onPress={() => {}}>
-        refresh
-      </Button> */}
     </View>
   );
 };

@@ -1,6 +1,6 @@
-import {StyleSheet, Text, View, useWindowDimensions} from 'react-native';
+import {StyleSheet, useWindowDimensions} from 'react-native';
 import React, {useEffect, useState} from 'react';
-import {IconButton, Tooltip} from 'react-native-paper';
+import {IconButton} from 'react-native-paper';
 import {useDispatch, useSelector} from 'react-redux';
 
 import {RootState} from '../redux/store';
@@ -42,11 +42,7 @@ export default ShuffleButton;
 
 const styles = StyleSheet.create({
   shuffle: {
-    // flex: 1,
-    // position: 'absolute',
-    // alignContent: 'center',
-    // justifyContent: 'center',
-    marginTop: 650,
+    marginTop: 550,
     alignItems: 'center',
     paddingTop: 5,
     alignSelf: 'center',

@@ -1,5 +1,5 @@
-import {Alert, SafeAreaView, StyleSheet, Text, View} from 'react-native';
-import React, {useEffect, useRef} from 'react';
+import {SafeAreaView, StyleSheet} from 'react-native';
+import React, {useRef} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import Swiper from 'react-native-deck-swiper';
 import {Quote} from 'quotesy';
@@ -43,8 +43,6 @@ const AllCardDeck = (props: Props) => {
           cards={quotes}
           cardIndex={0}
           renderCard={(card: Quote, cardIndex: number) => {
-            // console.log('Card Index:', cardIndex);
-
             return (
               <QuoteCard
                 quote={card}
