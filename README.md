@@ -77,6 +77,8 @@
 📦navigator <br/>
  ┗ 📜TabNavigator.tsx <br/>
 
+ ---
+
 #### Redux Persist로 앱이 종료 되어도 내부 DB를 통해 저장된 값을 가져오게끔 구성.
 📦redux <br/>
  ┣ 📂slices <br/>
@@ -85,11 +87,13 @@
  ┃ ┗ 📜settingSlice.ts <br/>
  ┗ 📜store.ts <br/>
 
+ ---
+
 #### useWindowsDimenstion 함수로 현재 디바이스의 가로, 세로 길이 측정해서, </br> 각각 화면에서의 반응형 구현.
  📦utils <br/>
  ┣ 📜isPortraitNow.ts <br/>
 
-
+---
 
 <br/><br/>
 
