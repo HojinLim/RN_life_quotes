@@ -30,7 +30,7 @@
 
 
 ### Deployment
-<img src="https://img.shields.io/badge/android-34A853?style=for-the-badge&logo=android&logoColor=green"/>
+<img src="https://img.shields.io/badge/android-34A853?style=for-the-badge&logo=android&logoColor=white"/>
 
 <br/><br/>
 
