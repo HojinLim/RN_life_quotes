@@ -49,63 +49,49 @@
 
 ## :partying_face: 주요 기능
 
-### 메인페이지
+### 셔플
 
-- FireStore Dababase와 Storage에서 사진과 제품 정보를 가져옵니다.
-- 카테고리별로 데이터를 나눠서 품목을 볼 수 있습니다.
+### 즐겨찾기
 
-### 상세 페이지
+### 데이터 초기화
 
-- 상세 제품 정보를 볼 수 있습니다.
-- 로그인한 현재 회원이 좋아요, 장바구니로 제품의 상태에 영향을 줍니다.
-
-
-### 좋아요, 장바구니 페이지
-
-- 좋아요 및 장바구니 추가한 제품을 확인하고 삭제할 수 있습니다.
-
-
-### 관리자 페이지
-
-- 관리자 권한이 있는 회원으로 로그인 시, /admin 으로 들어갈 수 있습니다. 제품을 관리할 수 있는 페이지입니다.
-- 제품을 등록하면 해당 제품의 정보를 Firebase 백앤드에 저장합니다.
-
-### 소셜 로그인
-
-- 구글, 페이스북으로도 회원 가입 및 로그인 가능합니다.
-
-- 관리자 권한이 있는 회원으로 로그인 시, /admin 으로 들어갈 수 있습니다. 제품을 관리할 수 있는 페이지입니다.
-- 제품을 등록하면 해당 제품의 정보를 Firebase 백앤드에 저장합니다.
 
 <br/><br/>
+
+---
+## :ballot_box_with_check: 성능 개선
+
+링크
+
+
+---
 
 ## :sunglasses:주요 파일 및 폴더
 
-#### 📜 useProductQuery.tsx, useUserLikeQuery.tsx: 유저가 상품에 대한 상호작용을 react-query문으로 제어할 수 있는 파일들입니다.
-#### 📜Router.tsx: 사용할 때 페이지를 이동할 때 필요한 라이브러리가 담긴 파일입니다.
-#### 📜firebase.ts: Firebase 환경 설정 파일입니다.
-#### 📜dataManage.ts: DB에 담긴 전체 상품 데이터와 유저의 좋아요, 장바구니 리스트를 가져오는 비동기 함수들이 있습니다.
-#### 📜ProductDetailPage.ts: 제품의 상세 정보들을 가져오고 좋아요, 장바구니 유무에 따라 정보를 관리 해줍니다.
-#### 📜GoogleLoginButton.ts: 인증 정보를 통해 구글 로그인 관리를 해줍니다.
+#### React Navigation, Material Bottab Tab으로 하단 탭 구성.
+📦navigator
+ ┗ 📜TabNavigator.tsx
+
+#### Redux Persist로 앱이 종료 되어도 내부 DB를 통해 저장된 값을 가져오게끔 구성.
+📦redux
+ ┣ 📂slices
+ ┃ ┣ 📜allQuoteSlice.ts
+ ┃ ┣ 📜favoriteQuoteSlice.ts
+ ┃ ┗ 📜settingSlice.ts
+ ┗ 📜store.ts
+
+#### useWindowsDimenstion 함수로 현재 디바이스의 가로, 세로 길이 측정해서, </br> 각각 화면에서의 반응형 구현.
+ 📦utils
+ ┣ 📜isPortraitNow.ts
+
 
 
 <br/><br/>
-
-<br/><br/>
-
-
-
-
 
 
 --- 
 
 
-# Getting Started
-
-<img src="https://github.com/HojinLim/RN_life_quotes/assets/69897998/8c9bf4bf-2a9d-4cfd-88bf-ab2fead98c62" alt="Your Image" width="250" height="500">
-
-
-# Ref
+# 명언 자료
 
 https://github.com/dwyl/quotes
