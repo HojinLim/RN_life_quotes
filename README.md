@@ -6,7 +6,7 @@
 삶에 지혜가 담긴 명언을 볼 수 있는 React Native로 개발한 앱입니다. <br/>
 기능은 미미하나, 스토어에 첫 배포(검수 중) 해 본 의미있는 프로젝트입니다. <br/>
 
-<img src="https://github.com/HojinLim/RN_life_quotes/assets/69897998/7316d293-1f8a-432e-a855-1e335d706ec7" alt="2" width="300" height="500">
+<img src="https://github.com/HojinLim/RN_life_quotes/assets/69897998/7316d293-1f8a-432e-a855-1e335d706ec7" alt="2" width="630" height="550">
 
 
 
