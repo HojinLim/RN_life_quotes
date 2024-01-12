@@ -4,7 +4,7 @@
 ## 프로젝트 소개
 
 삶에 지혜가 담긴 명언을 볼 수 있는 React Native로 개발한 앱입니다. <br/>
-기능은 미미하나, 스토어에 첫 배포(검수 중) 해 본 의미있는 프로젝트입니다. <br/>
+기능은 미미하나, 스토어에 첫 배포(검수 중) 해 본 의미있는 프로젝트입니다. <br/><br/>
 
 <img src="https://github.com/HojinLim/RN_life_quotes/assets/69897998/7316d293-1f8a-432e-a855-1e335d706ec7" alt="2" width="630" height="550">
 
@@ -52,6 +52,8 @@
 
 ## :partying_face: 주요 기능
 
+### 카드 스와이핑 ( React native deck swiper 라이브러리)
+
 ### 셔플
 
 ### 즐겨찾기
@@ -72,20 +74,20 @@
 ## :sunglasses:주요 파일 및 폴더
 
 #### React Navigation, Material Bottab Tab으로 하단 탭 구성.
-📦navigator
- ┗ 📜TabNavigator.tsx
+📦navigator <br/>
+ ┗ 📜TabNavigator.tsx <br/>
 
 #### Redux Persist로 앱이 종료 되어도 내부 DB를 통해 저장된 값을 가져오게끔 구성.
-redux
- ┣ slices
- ┃ ┣ allQuoteSlice.ts
- ┃ ┣ favoriteQuoteSlice.ts
- ┃ ┗ settingSlice.ts
- ┗ store.ts
+📦redux <br/>
+ ┣ 📂slices <br/>
+ ┃ ┣ 📜allQuoteSlice.ts <br/>
+ ┃ ┣ 📜favoriteQuoteSlice.ts <br/>
+ ┃ ┗ 📜settingSlice.ts <br/>
+ ┗ 📜store.ts <br/>
 
 #### useWindowsDimenstion 함수로 현재 디바이스의 가로, 세로 길이 측정해서, </br> 각각 화면에서의 반응형 구현.
- 📦utils
- ┣ 📜isPortraitNow.ts
+ 📦utils <br/>
+ ┣ 📜isPortraitNow.ts <br/>
 
 
 
