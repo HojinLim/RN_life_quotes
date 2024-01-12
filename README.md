@@ -3,7 +3,7 @@
 
 ## 프로젝트 소개
 
-삶에 지혜가 담긴 명언을 볼 수 있는 React Native로 개발한 앱입니다.
+삶에 지혜가 담긴 명언을 볼 수 있는 React Native로 개발한 앱입니다. <br/>
 기능은 미미하나, 스토어에 첫 배포(검수 중) 해 본 의미있는 프로젝트입니다.
 
 
@@ -37,11 +37,11 @@
 
 | 작업                                       | 미리보기                           |
 | ------------------------------------------ | ----------------------------- |
-| **메인 페이지**                           |  ![메인페이지](https://github.com/CTDKSKM/hkmall/assets/69897998/1e8a4f2a-8985-4b70-a02f-a016a6e3caab)|
-| **로그인 페이지**                         |  ![로그인페이지](https://github.com/CTDKSKM/hkmall/assets/69897998/ed88940f-47d3-450a-ba96-04ab0cf0346a)|
+| **메인페이지**                           |  (![메인페이지](https://github.com/HojinLim/RN_life_quotes/assets/69897998/9c6d05d1-692e-4bad-93dc-69a5b8cd3e9a)|
+| **""**                         |  (![즐찾](https://github.com/HojinLim/RN_life_quotes/assets/69897998/c6b5f7a2-1d6e-4cbe-9af6-8e7cfdcfb0c8)|
+| **""**                         |  (![가로](https://github.com/HojinLim/RN_life_quotes/assets/69897998/7cb1f6a2-3ce6-41b3-bc3f-bfdb4de853e7)|
 | **데이터 없음**                         |  (![데이터 없음](https://github.com/HojinLim/RN_life_quotes/assets/69897998/279d79a7-1a16-47a5-99a2-22c7738150f4)|
-| **장바구니 & 좋아요 품목 삭제**        |    ![삭제](https://github.com/CTDKSKM/hkmall/assets/69897998/7788409b-cf5c-40e7-94ff-91d6ad25d373)|
-| **제품 등록(관리자 전용)**                |  ![제품 추가](https://github.com/CTDKSKM/hkmall/assets/69897998/7581df85-e702-4340-baf1-5c419dad1ee7) |
+
 
 ---
 
