@@ -31,16 +31,17 @@
 
 <br/><br/>
 
+---
 
 ## 화면 구성
 
+| 작업           | 미리보기                                                                                        |
+| -------------- | --------------------------------------------------------------------------------------------- |
+| **메인페이지** | <img src="https://github.com/HojinLim/RN_life_quotes/assets/69897998/9c6d05d1-692e-4bad-93dc-69a5b8cd3e9a" alt="메인페이지" width="200" height="300"> |
+| **2**          | ![즐찾](https://github.com/HojinLim/RN_life_quotes/assets/69897998/c6b5f7a2-1d6e-4cbe-9af6-8e7cfdcfb0c8) |
+| **3**          | ![가로](https://github.com/HojinLim/RN_life_quotes/assets/69897998/7cb1f6a2-3ce6-41b3-bc3f-bfdb4de853e7) |
+| **데이터 없음** | ![데이터 없음](https://github.com/HojinLim/RN_life_quotes/assets/69897998/279d79a7-1a16-47a5-99a2-22c7738150f4) |
 
-| 작업                                       | 미리보기                           |
-| ------------------------------------------ | ----------------------------- |
-| **메인페이지**                           | `<img src="https://github.com/HojinLim/RN_life_quotes/assets/69897998/9c6d05d1-692e-4bad-93dc-69a5b8cd3e9a" alt="메인페이지" width="300" height="200">` |
-| **""** | ![즐찾](https://github.com/HojinLim/RN_life_quotes/assets/69897998/c6b5f7a2-1d6e-4cbe-9af6-8e7cfdcfb0c8){width=300px height=200px} |
-| **""**                         |  (![가로](https://github.com/HojinLim/RN_life_quotes/assets/69897998/7cb1f6a2-3ce6-41b3-bc3f-bfdb4de853e7)|
-| **데이터 없음**                         |  (![데이터 없음](https://github.com/HojinLim/RN_life_quotes/assets/69897998/279d79a7-1a16-47a5-99a2-22c7738150f4)|
 
 
 ---
