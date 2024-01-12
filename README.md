@@ -9,8 +9,8 @@
 <img src="https://github.com/HojinLim/RN_life_quotes/assets/69897998/7316d293-1f8a-432e-a855-1e335d706ec7" alt="2" width="630" height="550">
 
 
-
-**배포 링크**: 
+<br/><br/>
+**배포 링크** : 
 
 <br/><br/>
 
