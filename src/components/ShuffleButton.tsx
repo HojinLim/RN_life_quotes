@@ -1,6 +1,11 @@
-import {StyleSheet, useWindowDimensions} from 'react-native';
+import {
+  StyleSheet,
+  TouchableOpacity,
+  View,
+  useWindowDimensions,
+} from 'react-native';
 import React, {useEffect, useState} from 'react';
-import {IconButton} from 'react-native-paper';
+import {Icon} from 'react-native-paper';
 import {useDispatch, useSelector} from 'react-redux';
 
 import {RootState} from '../redux/store';
@@ -11,6 +16,7 @@ import {isPortraitNow} from '../utils/isPortraitNow';
 const ShuffleButton = () => {
   const dispatch = useDispatch();
   const {mode} = useSelector((state: RootState) => state.settingSliceReducer);
+  const favo = useSelector((state: RootState) => state.favoriteReducer);
 
   const {width, height} = useWindowDimensions();
   const [isPortrait, setIsPotrait] = useState<boolean>();
@@ -27,14 +33,18 @@ const ShuffleButton = () => {
       dispatch(shuffleFavoriteQuotes());
     }
   };
+  if (favo.length < 1 && mode === 'favorite') {
+    return null;
+  }
 
   return (
-    <IconButton
-      icon={'shuffle-variant'}
-      size={24}
+    <TouchableOpacity
       onPress={shuffleHandler}
       style={isPortrait ? styles.shuffle : styles.landscape_shuffle}
-    />
+      accessibilityLabel="Shuffle"
+      aria-label="Shuffle">
+      <Icon source={'shuffle'} size={24} />
+    </TouchableOpacity>
   );
 };
 
@@ -42,15 +52,28 @@ export default ShuffleButton;
 
 const styles = StyleSheet.create({
   shuffle: {
+    flex: 1,
+    // overflow: 'hidden',
+    position: 'absolute',
     marginTop: 550,
     alignItems: 'center',
     paddingTop: 5,
     alignSelf: 'center',
+    minWidth: 55,
+    minHeight: 55,
+    zIndex: 4,
   },
   landscape_shuffle: {
+    flex: 1,
+    position: 'absolute',
     alignContent: 'center',
     justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'center',
     marginStart: 50,
-    marginTop: 55,
+    marginTop: 50,
+    minWidth: 55,
+    minHeight: 55,
+    zIndex: 4,
   },
 });

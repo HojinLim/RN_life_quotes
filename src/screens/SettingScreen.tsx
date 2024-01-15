@@ -29,7 +29,13 @@ const SettingScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Button onPress={removeFavoriteHandler}>Reset ALL Favorite</Button>
+      <Button
+        onPress={removeFavoriteHandler}
+        contentStyle={{
+          minHeight: 52,
+        }}>
+        Reset ALL Favorite
+      </Button>
     </View>
   );
 };

@@ -8,7 +8,6 @@ import QuoteCard from './QuoteCard';
 import EmptyCard from './EmptyCard';
 import {removeQuote} from '../redux/slices/favoriteQuoteSlice';
 import {removeStar} from '../redux/slices/allQuoteSlice';
-import ShuffleButton from './ShuffleButton';
 
 const FavoriteCardDeck = () => {
   const favoriteQuotes = useSelector(
@@ -37,7 +36,12 @@ const FavoriteCardDeck = () => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView
+      style={[
+        favoriteQuotes.length < 1
+          ? [styles.container, {flex: 1}]
+          : styles.container,
+      ]}>
       {favoriteQuotes.length > 0 ? (
         <Swiper
           stackAnimationFriction={5}
@@ -69,7 +73,7 @@ const FavoriteCardDeck = () => {
         <EmptyCard />
       )}
 
-      {cardLength > 0 && <ShuffleButton />}
+      {/* {cardLength > 0 && <ShuffleButton />} */}
     </SafeAreaView>
   );
 };
@@ -78,7 +82,7 @@ export default FavoriteCardDeck;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    // flex: 1,
     backgroundColor: '#F5FCFF',
   },
 });

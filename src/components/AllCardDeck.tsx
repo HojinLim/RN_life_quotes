@@ -56,7 +56,7 @@ const AllCardDeck = (props: Props) => {
         <EmptyCard />
       )}
 
-      <ShuffleButton />
+      {/* <ShuffleButton /> */}
     </SafeAreaView>
   );
 };
@@ -65,7 +65,7 @@ export default AllCardDeck;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#F5FCFF',
+    // flex: 1,
+    backgroundColor: '#37b4e9',
   },
 });

@@ -1,7 +1,14 @@
 import {StyleSheet, View, useWindowDimensions} from 'react-native';
 import React, {useEffect, useMemo, useState} from 'react';
 import {Quote} from 'quotesy';
-import {Card, IconButton, Paragraph, Surface, Title} from 'react-native-paper';
+import {
+  Card,
+  IconButton,
+  Paragraph,
+  Surface,
+  Title,
+  Tooltip,
+} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import {useSelector} from 'react-redux';
@@ -79,9 +86,11 @@ const QuoteCard = (props: QuoteCardProps) => {
       <IconButton
         icon={favorite ? 'star' : 'star-outline'}
         iconColor="gold"
-        size={28}
+        size={30}
         onPress={() => handlePress(quote)}
         style={[styles.iconButton]}
+        accessibilityLabel="favorite"
+        aria-label="favorite"
       />
     </Card>
   );
@@ -135,7 +144,8 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-end',
     verticalAlign: 'bottom',
     marginTop: 'auto',
-
+    minHeight: 54,
+    minWidth: 54,
     marginEnd: 15,
   },
   pin: {

@@ -1,58 +1,54 @@
+import SegmentedControl, {
+  NativeSegmentedControlIOSChangeEvent,
+} from '@react-native-segmented-control/segmented-control';
 import * as React from 'react';
-import {SafeAreaView, StyleSheet} from 'react-native';
-import {SegmentedButtons} from 'react-native-paper';
+import {NativeSyntheticEvent, StyleSheet} from 'react-native';
 
 const ModeSegment = ({
   onValueChange,
 }: {
-  onValueChange: (value: string) => void;
+  onValueChange: (
+    value: NativeSyntheticEvent<NativeSegmentedControlIOSChangeEvent>,
+  ) => void;
 }) => {
-  const [value, setValue] = React.useState('all');
+  const [selectedIndex, setSelectedIndex] = React.useState(0);
 
-  const handleValueChange = (newValue: string) => {
-    setValue(newValue);
+  const handleValueChange = (
+    newValue: NativeSyntheticEvent<NativeSegmentedControlIOSChangeEvent>,
+  ) => {
+    setSelectedIndex(newValue.nativeEvent.selectedSegmentIndex);
     // 부모 컴포넌트로 값 전달
     onValueChange && onValueChange(newValue);
   };
 
   return (
-    <SafeAreaView style={styles.container}>
-      <SegmentedButtons
-        value={value}
-        onValueChange={handleValueChange}
-        buttons={[
-          {
-            icon: 'alpha-a',
-            value: 'all', // '전체' 대신 다른 값을 지정
-            label: 'All',
-            checkedColor: 'gold',
-            uncheckedColor: 'black',
-            disabled: false,
-
-            style: {backgroundColor: 'white'},
-          },
-          {
-            icon: 'star',
-            value: 'favorite', // '전체' 대신 다른 값을 지정
-            label: 'favorite',
-            checkedColor: 'gold',
-            uncheckedColor: 'black',
-            style: {backgroundColor: 'white'},
-          },
-        ]}
-      />
-    </SafeAreaView>
+    <SegmentedControl
+      style={styles.container}
+      values={['all', 'favorite']}
+      selectedIndex={selectedIndex}
+      activeFontStyle={{color: 'gold'}}
+      onChange={handleValueChange}
+      fontStyle={{fontWeight: '900'}}
+      tabStyle={{
+        borderWidth: 2,
+        margin: 1,
+        borderRadius: 15,
+      }}
+    />
   );
 };
 
 const styles = StyleSheet.create({
   container: {
+    // flex: 1,
     position: 'absolute',
     top: 15,
     left: 0,
     right: 0,
     alignItems: 'center',
     marginHorizontal: 15,
+    minHeight: 50,
+    borderRadius: 18,
   },
 });
 
