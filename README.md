@@ -52,13 +52,13 @@
 
 ## :partying_face: 주요 기능
 
-### 카드 스와이핑 ( React native deck swiper 라이브러리)
+### -카드 스와이핑 ( React native deck swiper 라이브러리)
 
-### 셔플
+### -셔플
 
-### 즐겨찾기
+### -즐겨찾기 (Redux Persist)
 
-### 데이터 초기화
+### -데이터 초기화
 
 
 <br/><br/>
